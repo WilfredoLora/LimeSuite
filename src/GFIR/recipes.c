@@ -152,8 +152,7 @@ int ludcmp(double **a, int n, int *indx, double *d)
 {
 	int i,imax,j,k;
 	double big,dum,sum,temp;
-	double *vv,*vector();
-	void free_vector();
+	double *vv;
 
 	imax = 0; 
 

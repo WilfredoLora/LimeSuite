@@ -26,7 +26,7 @@ int gfir_lms(struct dfilter *hr, struct dfilter *hi, struct dfilter *hcsd,
              double w1, double w2, double a1, double a2,
              int cprec,
              int csdprec,
-             double (*correction)())
+             double (*correction)(double x))
 {
   double *weights, *desired, *w;
   int i, points;
