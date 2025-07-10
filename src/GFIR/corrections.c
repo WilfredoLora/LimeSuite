@@ -26,8 +26,7 @@
 /* ************************************************************ */
 /* Inverse sinc function to correct DAC sinc envelope 		*/
 /* ************************************************************ */
-double InvSinc(x)
-double x;
+double InvSinc(double x)
 {
 	if(fpclassify(x) == FP_ZERO) return(1.0);
 	return(fabs((M_PI*x)/(sin(M_PI*x) + DELTA)));
@@ -36,8 +35,7 @@ double x;
 /* ************************************************************ */
 /* Invsinc function shifted into lower frequency stage.		*/
 /* ************************************************************ */
-double InvSincS(x, k, x0)
-double x, k, x0;
+double InvSincS(double x, double k, double x0)
 {
 	double xin;
 
@@ -49,8 +47,7 @@ double x, k, x0;
 /* ************************************************************ */
 /* Unity function, no correction is envolved.			*/
 /* ************************************************************ */
-double One(x)
-double x;
+double One(double x)
 {
 	return(1.0);
 }

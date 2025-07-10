@@ -78,18 +78,10 @@ double Case4F(double w, int i)
  *	0			- if everything is OK
  *	-1			- otherwise
  * ************************************************************************ */
-int lms(hr, hi, hcsd, n, w, des, weight, p, cprec, csdprec, symmetry,
-	bincode, csdcode, csdcoder)
-double *hr, *hi, *hcsd;
-int n;
-double *w;
-double *des;
-double *weight;
-int p;
-int cprec;
-int csdprec;
-int symmetry;
-int **bincode, **csdcode, **csdcoder;
+int lms(double *hr, double *hi, double *hcsd,
+        int n, double *w, double *des, double *weight,
+        int p, int cprec, int csdprec, int symmetry,
+        int **bincode, int **csdcode, int **csdcoder)
 {
 
 	/* All this is for  solving a linear system */
