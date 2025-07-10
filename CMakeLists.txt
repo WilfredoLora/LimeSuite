@@ -11,16 +11,8 @@ option(ENABLE_NEW_GAIN_BEHAVIOUR "Enable new gain functionality" OFF)
 #include modules for finding CyAPI
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules/")
 
-if(POLICY CMP0015)
-    cmake_policy(SET CMP0015 NEW)
-endif()
-
 if(POLICY CMP0077)
     cmake_policy(SET CMP0077 OLD)
-endif()
-
-if(${CMAKE_MAJOR_VERSION} GREATER 2)
-    cmake_policy(SET CMP0043 NEW)
 endif()
 
 list(FIND CMAKE_CONFIGURATION_TYPES "${CMAKE_BUILD_TYPE}" index)
@@ -94,11 +86,6 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 
     # include module for check_cxx_compiler_flag
     include(CheckCXXCompilerFlag)
-
-    #enable C++11 on older versions of cmake
-    if (CMAKE_VERSION VERSION_LESS "3.1")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
-    endif()
 
     #enable warnings in Debug configurations
     if (NOT CMAKE_BUILD_TYPE STREQUAL "Release")

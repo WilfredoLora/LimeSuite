@@ -1,5 +1,5 @@
 #project directory inside LimeSuite/mcu_program
-cmake_policy(SET CMP0003 NEW)
+
 #C++11 is a required language feature for this project
 set(CMAKE_CXX_STANDARD 11)
 
@@ -8,12 +8,6 @@ cmake_dependent_option(ENABLE_MCU_TESTBENCH "MCU functions testing project" OFF 
 if(ENABLE_MCU_TESTBENCH)
 
 if(CMAKE_COMPILER_IS_GNUCXX)
-
-    #enable C++11 on older versions of cmake
-    if (CMAKE_VERSION VERSION_LESS "3.1")
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11x")
-    endif()
-
     #common warnings enabled
     add_compile_options(-Wall)
 endif()
