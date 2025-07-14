@@ -21,9 +21,9 @@
 #define LMS_POINTS 4000
 
 /* Amplitude correction functions */
-double InvSinc();
-double InvSincS();
-double One();
+double InvSinc(double x);
+double InvSincS(double x);
+double One(double x);
 
 /* Amplitude correction functions we can support */
 #define NONE		One		/* Constant */

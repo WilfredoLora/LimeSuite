@@ -24,9 +24,9 @@
 #define ODD     1
 
 /* Declare functions from Numerical Recipes that are used here */
-double  *vector();
-int  *ivector();
-double  **matrix();
+double  *vector(int nl, int nh);
+int  *ivector(int nl, int nh);
+double  **matrix(int nrl, int nrh, int ncl, int nch);
     
 /* ************************************************************************ 
  *  Trigonometric functions for CASE1, CASE2, CASE3 and CASE4 filters
@@ -78,18 +78,10 @@ double Case4F(double w, int i)
  *	0			- if everything is OK
  *	-1			- otherwise
  * ************************************************************************ */
-int lms(hr, hi, hcsd, n, w, des, weight, p, cprec, csdprec, symmetry,
-	bincode, csdcode, csdcoder)
-double *hr, *hi, *hcsd;
-int n;
-double *w;
-double *des;
-double *weight;
-int p;
-int cprec;
-int csdprec;
-int symmetry;
-int **bincode, **csdcode, **csdcoder;
+int lms(double *hr, double *hi, double *hcsd,
+        int n, double *w, double *des, double *weight,
+        int p, int cprec, int csdprec, int symmetry,
+        int **bincode, int **csdcode, int **csdcoder)
 {
 
 	/* All this is for  solving a linear system */
@@ -100,7 +92,7 @@ int **bincode, **csdcode, **csdcoder;
 	/* Parameters of real function Hr(w) */
 	double *a; 		/* Coefficients */
 	int L;			/* Number of terms in Hr(w) sum */
-	double (*f)();		/* Trigonometric function in Hr(w) */
+	double (*f)(double w, int i);		/* Trigonometric function in Hr(w) */
 	
 	int parity;		/* Parity of the filter (ODD or EVEN) */
 	int i, j, k;		/* Loop counters */

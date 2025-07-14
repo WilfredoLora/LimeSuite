@@ -21,13 +21,12 @@
 #define CSDPREC		16	/* CSD Coefficients precision */
 
 /* *********************************************************************** */
-int gfir_lms(hr, hi, hcsd, n, w1, w2, a1, a2, cprec, csdprec, correction)
-  struct dfilter *hr, *hi, *hcsd;
-int n;
-double w1, w2, a1, a2;
-int cprec;
-int csdprec;
-double (*correction)();
+int gfir_lms(struct dfilter *hr, struct dfilter *hi, struct dfilter *hcsd,
+             int n,
+             double w1, double w2, double a1, double a2,
+             int cprec,
+             int csdprec,
+             double (*correction)(double x))
 {
   double *weights, *desired, *w;
   int i, points;

@@ -57,8 +57,7 @@ void nrerror(char * error_text);
 /*****************************************************/
 /*** Allocates a double vector with range [nl..nh]. ***/
 /*****************************************************/
-double  *vector(nl,nh)
-int    nl,nh;
+double  *vector(int nl, int nh)
 {
 	double *v;
 
@@ -70,8 +69,7 @@ int    nl,nh;
 /*****************************************************/
 /*** Allocates an int vector with range [nl..nh].  ***/
 /*****************************************************/
-int  *ivector(nl,nh)
-int  nl,nh;
+int  *ivector(int nl, int nh)
 {
 	int *v;
 
@@ -83,9 +81,7 @@ int  nl,nh;
 /****************************************************/
 /*** Frees a double vector allocated by vector().  ***/
 /****************************************************/
-void free_vector(v,nl,nh)
-double *v;
-int   nl,nh;
+void free_vector(double *v, int nl, int nh)
 {
 	free((char*) (v+nl));
 }
@@ -93,9 +89,7 @@ int   nl,nh;
 /****************************************************/
 /*** Frees an int vector allocated by ivector().  ***/
 /****************************************************/
-void free_ivector(v,nl,nh)
-int *v;
-int   nl,nh;
+void free_ivector(int *v, int nl, int nh)
 {
 	free((char*) (v+nl));
 }
@@ -104,8 +98,7 @@ int   nl,nh;
 /****  Allocates a double matrix with    ****/
 /****  range [nrl..nrh] [ncl..nch].     ****/
 /*******************************************/
-double  **matrix(nrl,nrh,ncl,nch)
-int  nrl,nrh,ncl,nch;
+double  **matrix(int nrl, int nrh, int ncl, int nch)
 {
 	int    i;
 	double  **m;
@@ -129,9 +122,7 @@ int  nrl,nrh,ncl,nch;
 /****   Frees a matrix allocated by ... ***/
 /****   matrix().                       ***/
 /******************************************/
-void free_matrix(m,nrl,nrh,ncl,nch)
-double **m;
-int   nrl,nrh,ncl,nch;
+void free_matrix(double **m, int nrl, int nrh, int ncl, int nch)
 {
 	int i;
  
@@ -142,11 +133,8 @@ int   nrl,nrh,ncl,nch;
 /*************************************************/
 /*** Numerical Recipes standard error handler. ***/
 /*************************************************/
-void nrerror(error_text)
-char error_text[];
+void nrerror(char error_text[])
 {
-	void exit();
-
 	fprintf(stderr,"Numerical Recipes run-time error...\n");
 	fprintf(stderr,"%s\n",error_text);
 	fprintf(stderr,"Forced to exit.\n");
@@ -160,14 +148,11 @@ char error_text[];
 /*	indx[1:n]		temporary storage,			*/
 /*	d			temporary storage.			*/
 /* ******************************************************************** */
-int ludcmp(a,n,indx,d)
-int n, *indx;
-double **a,*d;
+int ludcmp(double **a, int n, int *indx, double *d)
 {
 	int i,imax,j,k;
 	double big,dum,sum,temp;
-	double *vv,*vector();
-	void free_vector();
+	double *vv;
 
 	imax = 0; 
 
@@ -223,9 +208,7 @@ double **a,*d;
 /* ******************************************************************** */
 /* Solve system of equation						*/
 /* ******************************************************************** */
-void lubksb(a,n,indx,b)
-double **a,b[];
-int n,indx[];
+void lubksb(double **a, int n, int indx[], double b[])
 {
 	int i,ii=0,ip,j;
 	double sum;
