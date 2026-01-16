@@ -1013,7 +1013,7 @@ void SoapyLMS7::writeSetting(const int direction, const size_t channel, const st
         mChannels[direction].at(channel).tst_dc = ampl;
     }
 
-    else if (key == "CALIBRATE_TX" or (isTx and key == "CALIBRATE"))
+    else if (key == "CALIBRATE_TX" || (isTx && key == "CALIBRATE"))
     {
         double bw = std::stof(value);
         SoapySDR::logf(SOAPY_SDR_INFO, "Calibrate Tx %f", bw);
@@ -1023,7 +1023,7 @@ void SoapyLMS7::writeSetting(const int direction, const size_t channel, const st
         mChannels[direction].at(channel).cal_bw = bw;
     }
 
-    else if (key == "CALIBRATE_RX" or (not isTx and key == "CALIBRATE"))
+    else if (key == "CALIBRATE_RX" || (!isTx && key == "CALIBRATE"))
     {
         double bw = std::stof(value);
         SoapySDR::logf(SOAPY_SDR_INFO, "CalibrateRx %f", bw);
