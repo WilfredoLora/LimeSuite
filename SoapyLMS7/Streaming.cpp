@@ -146,10 +146,10 @@ SoapySDR::Stream *SoapyLMS7::setupStream(
     stream->direction = direction;
     stream->elemSize = SoapySDR::formatToSize(format);
     stream->hasCmd = false;
-    stream->skipCal = args.count("skipCal") != 0 and args.at("skipCal") == "true";
+    stream->skipCal = args.count("skipCal") != 0 && args.at("skipCal") == "true";
 
     StreamConfig config;
-    config.align = args.count("alignPhase") != 0 and args.at("alignPhase") == "true";
+    config.align = args.count("alignPhase") != 0 && args.at("alignPhase") == "true";
     config.isTx = (direction == SOAPY_SDR_TX);
     config.performanceLatency = 0.5;
     config.bufferLength = 0; //auto
@@ -285,7 +285,7 @@ int SoapyLMS7::activateStream(
     //this is for the set-it-and-forget-it style of use case
     //where boards are configured, the stream is setup,
     //and the configuration is maintained throughout the run
-    while (not _channelsToCal.empty() and not icstream->skipCal)
+    while (!_channelsToCal.empty() && !icstream->skipCal)
     {
         bool dir  = _channelsToCal.begin()->first;
         auto ch  = _channelsToCal.begin()->second;
@@ -384,7 +384,7 @@ int SoapyLMS7::_readStreamAligned(
                 return SOAPY_SDR_CORRUPTION;
             }
             fastForward(buffs[i], N, elemSize, md.timestamp, requestTime);
-            if (i == 0 and N != 0) numElems = N; //match size on other channels
+            if (i == 0 && N != 0) numElems = N; //match size on other channels
             continue; //read again into the remaining buffer
         }
 
@@ -425,7 +425,7 @@ int SoapyLMS7::readStream(
     const auto exitTime = std::chrono::high_resolution_clock::now() + std::chrono::microseconds(timeoutUs);
 
     //wait for a command from activate stream up to the timeout specified
-    if (not icstream->hasCmd)
+    if (!icstream->hasCmd)
     {
         while (std::chrono::high_resolution_clock::now() < exitTime)
         {
@@ -446,7 +446,7 @@ int SoapyLMS7::readStream(
     if (status < 0) return status;
 
     //the command had a time, so we need to compare it to received time
-    if ((icstream->flags & SOAPY_SDR_HAS_TIME) != 0 and (metadata.flags & RingFIFO::SYNC_TIMESTAMP) != 0)
+    if ((icstream->flags & SOAPY_SDR_HAS_TIME) != 0 && (metadata.flags & RingFIFO::SYNC_TIMESTAMP) != 0)
     {
         //our request time is now late, clear command and return error code
         if (cmdTicks < metadata.timestamp)
